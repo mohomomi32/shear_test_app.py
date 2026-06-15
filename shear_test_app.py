@@ -22,7 +22,10 @@ project_name = st.sidebar.text_input("PROJECT NAME", "Soil Investigation Project
 client_name = st.sidebar.text_input("CLIENT NAME", "M/s Alpha Developers")
 location = st.sidebar.text_input("SITE LOCATION", "Karachi, Pakistan")
 sample_id = st.sidebar.text_input("SAMPLE ID / DEPTH", "BH-02 @ 3.0m")
-sample_type = st.sidebar.selectbox("SOIL TYPE", ["Silty Sand (SM)", "Lean Clay (CL)", "Poorly Graded Sand (SP)"])
+
+# UPDATED: Selectbox ko remove kar ke simple text_input lagaya hai taake aap soil/rock khud type kar sakein
+sample_type = st.sidebar.text_input("SOIL / ROCK TYPE", "Silty Sand (SM)")
+
 test_date = st.sidebar.date_input("TEST DATE", datetime.date.today())
 
 st.sidebar.markdown("---")
@@ -141,7 +144,7 @@ def generate_pdf(graph_buffer):
     # Metadata Table
     meta_data = [
         [Paragraph("PROJECT NAME:", meta_lbl), Paragraph(project_name, meta_val), Paragraph("SAMPLE ID:", meta_lbl), Paragraph(sample_id, meta_val)],
-        [Paragraph("CLIENT NAME:", meta_lbl), Paragraph(client_name, meta_val), Paragraph("SOIL TYPE:", meta_lbl), Paragraph(sample_type, meta_val)],
+        [Paragraph("CLIENT NAME:", meta_lbl), Paragraph(client_name, meta_val), Paragraph("SOIL / ROCK TYPE:", meta_lbl), Paragraph(sample_type, meta_val)],
         [Paragraph("SITE LOCATION:", meta_lbl), Paragraph(location, meta_val), Paragraph("TEST DATE:", meta_lbl), Paragraph(test_date.strftime('%d-%m-%Y'), meta_val)],
         [Paragraph("BOX DIMENSIONS:", meta_lbl), Paragraph(f"{box_w}cm x {box_l}cm", meta_val), Paragraph("BOX AREA:", meta_lbl), Paragraph(f"{area_cm2:.2f} cm²", meta_val)]
     ]
